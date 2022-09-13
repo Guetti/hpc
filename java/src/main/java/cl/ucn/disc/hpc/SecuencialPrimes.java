@@ -96,7 +96,7 @@ public final class SecuencialPrimes {
 
         // Configuration
         final long from = 1;
-        final long to = 1000 * 1000 * 1000;
+        final long to = 1000 * 1000 * 1000; // ~ 25 mins.
         long primes = 0;
 
         log.info("Finding Primes from {} to {} ..", from, String.format("%,d", to));
