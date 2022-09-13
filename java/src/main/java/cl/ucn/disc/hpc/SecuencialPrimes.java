@@ -41,9 +41,19 @@ public final class SecuencialPrimes {
             return false;
         }
 
-        // Testing from 2 to n-1
-        for (long i = 2; i < n; i++) {
+        // Two is prime!
+        if (n == 2) {
+            return true;
+        }
 
+        // Even numbers aren't prime!
+        if (n % 2 == 0) {
+            return false;
+        }
+
+        // Testing from 3 to sqrt(n)
+        long max = (long) Math.sqrt(n);
+        for (long i = 3; i <= max; i += 2) {
             // If module == 0 -> not prime!
             if (n % i == 0) {
                 return false;
@@ -73,7 +83,7 @@ public final class SecuencialPrimes {
 
         // Configuration
         final long from = 1;
-        final long to = 500 * 1000;
+        final long to = 1000 * 1000 * 1000;
         long primes = 0;
 
         log.info("Finding Primes from {} to {} ..", from, String.format("%,d", to));
@@ -83,6 +93,12 @@ public final class SecuencialPrimes {
 
         // Loop for check
         for (long k = from; k <= to; k++) {
+            // Show some %
+            if (k % 1000000 == 0) {
+                log.debug("{}% -> {}", String.format("%.1f", 100 * (double) k / to), String.format("%,d", k));
+            }
+
+            // Count if prime
             if (isPrime(k)) {
                 primes++;
             }
