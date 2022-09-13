@@ -71,22 +71,26 @@ public final class SecuencialPrimes {
         int logicalCores = si.getHardware().getProcessor().getLogicalProcessorCount();
         log.debug("Detected {} logical cores.", logicalCores);
 
-        // Run the code
-        long from = 1;
-        long to = 500 * 1000;
+        // Configuration
+        final long from = 1;
+        final long to = 500 * 1000;
         long primes = 0;
 
         log.info("Finding Primes from {} to {} ..", from, String.format("%,d", to));
 
+        // Timer
         long start = System.nanoTime();
+
+        // Loop for check
         for (long k = from; k <= to; k++) {
             if (isPrime(k)) {
                 primes++;
             }
         }
-        long end = System.nanoTime();
-        long millis = TimeUnit.NANOSECONDS.toMillis(end - start);
-        log.info("Founded {} primes in {}ms.", String.format("%,d", primes), millis);
+
+        // How long?
+        long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+        log.info("Founded {} primes in {} ms", String.format("%,d", primes), String.format("%,d", millis));
 
         log.debug("Done.");
 
