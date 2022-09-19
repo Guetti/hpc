@@ -96,33 +96,58 @@ public final class SecuencialPrimes {
 
         // Configuration
         final long from = 1;
-        final long to = 1000 * 1000 * 1000; // ~ 25 mins.
-        long primes = 0;
+        final long to = 1000; // ~ 25 mins.
+
+        final long numbersPerCore = to / logicalCores;
+
+        final long rest = to % logicalCores;
+
+        // Calculate how many numbers can a single core process.
+        log.info("We can perform {} numbers per core", numbersPerCore);
+
+        log.info("{} Numbers left over, add to the final thread.", rest);
 
         log.info("Finding Primes from {} to {} ..", from, String.format("%,d", to));
 
-        // Timer
-        long start = System.nanoTime();
+        // Declare the threads..
+        FindPrimesThread[] threads = new FindPrimesThread[logicalCores];
 
-        // Loop for check
-        for (long k = from; k <= to; k++) {
-            // Show some %
-            if (k % 1000000 == 0) {
-                log.debug("{}% -> {}", String.format("%.1f", 100 * (double) k / to), String.format("%,d", k));
+        // Declare and initialize from where to start finding primes.
+        long counter = from;
+
+        for (int i = 0; i < logicalCores; i++){
+            // Initialize the thread.
+            if (i == logicalCores)
+                threads[i] = new FindPrimesThread(counter, counter + numbersPerCore + rest, i + 1);
+
+            else
+                threads[i] = new FindPrimesThread(counter, counter + numbersPerCore, i + 1);
+            // Add to the counter the next start position.
+            counter += numbersPerCore + 1;
+            // Start counting primes.
+            threads[i].start();
+        }
+
+        // Save the amount of primes.
+        long primes = 0;
+
+        for (int i = 0; i < logicalCores; i++){
+            try{
+                // Try to join the indexed thread.
+                threads[i].join();
+
+                // Add the amount of primes that the core found.
+                primes += threads[i].getPrimes();
+                log.info("", threads[i].getPrimes());
             }
-
-            // Count if prime
-            if (isPrime(k)) {
-                primes++;
+            catch (InterruptedException e){
+                e.printStackTrace();
             }
         }
 
-        // How long?
-        long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
-        log.info("Founded {} primes in {} ms", String.format("%,d", primes), String.format("%,d", millis));
-
-        log.debug("Done.");
-
+        // Show the info.
+        log.info("Total primes: {}", String.format("%,d", primes));
     }
+
 
 }
