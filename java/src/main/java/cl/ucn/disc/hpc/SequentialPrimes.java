@@ -119,8 +119,9 @@ public final class SequentialPrimes {
         long start = System.nanoTime();
 
         for (int i = 0; i < logicalCores; i++){
-            // Initialize the thread.
+            // Initialize the threads.
             if (i == logicalCores - 1)
+                // If is the last thread, add the rest numbers.
                 threads[i] = new FindPrimesThread(counter, counter - 1 + numbersPerCore + rest, i + 1);
 
             else
@@ -150,8 +151,6 @@ public final class SequentialPrimes {
         // How long?
         long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
         log.info("Found {} primes in {} ms", String.format("%,d", primes), String.format("%,d", millis));
-        
-
         log.debug("Done.");
     }
 
