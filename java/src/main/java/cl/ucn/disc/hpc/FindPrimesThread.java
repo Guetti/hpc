@@ -28,19 +28,41 @@ import java.util.concurrent.TimeUnit;
 
 import static cl.ucn.disc.hpc.SecuencialPrimes.isPrime;
 
+/**
+ * The thread to use to find primes.
+ *
+ * @author Gustavo Szigethi
+ * @version 0.0.1
+ */
 @Slf4j
-public class FindPrimesThread extends Thread{
+public final class FindPrimesThread extends Thread{
+    // The number of thread.
     private final int thread;
+
+    // The initial number to find primes.
     private final long from;
+
+    // The final number to find primes.
     private final long to;
+
+    // The amount of primes that the thread found.
     private long primes = 0;
 
+    /**
+     * The constructor.
+     * @param from The start number.
+     * @param to The final number.
+     * @param thread The number of the thread.
+     */
     public FindPrimesThread(long from, long to, int thread){
         this.thread = thread;
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Override the run method of Thread class to start finding primes..
+     */
     @Override
     public void run(){
         log.debug("Using Thread: {}", thread);
@@ -66,6 +88,10 @@ public class FindPrimesThread extends Thread{
         log.debug("Done.");
     }
 
+    /**
+     * Get the primes.
+     * @return The amount of primes.
+     */
     public long getPrimes(){
         return this.primes;
     }
