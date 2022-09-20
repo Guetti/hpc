@@ -25,6 +25,8 @@ package cl.ucn.disc.hpc;
 import lombok.extern.slf4j.Slf4j;
 import oshi.SystemInfo;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * The Parallel Primes to show the speedup.
  *
@@ -101,7 +103,7 @@ public final class SequentialPrimes {
         final long rest = to % logicalCores;
 
         // Calculate how many numbers can a single core process.
-        log.info("We can perform {} numbers per core", numbersPerCore);
+        log.info("We can process {} numbers per core", numbersPerCore);
 
         log.info("{} Numbers left over, add to the final thread.", rest);
 
@@ -113,15 +115,18 @@ public final class SequentialPrimes {
         // Declare and initialize from where to start finding primes.
         long counter = from;
 
+        // Timer
+        long start = System.nanoTime();
+
         for (int i = 0; i < logicalCores; i++){
             // Initialize the thread.
-            if (i == logicalCores)
-                threads[i] = new FindPrimesThread(counter, counter + numbersPerCore + rest, i + 1);
+            if (i == logicalCores - 1)
+                threads[i] = new FindPrimesThread(counter, counter - 1 + numbersPerCore + rest, i + 1);
 
             else
-                threads[i] = new FindPrimesThread(counter, counter + numbersPerCore, i + 1);
+                threads[i] = new FindPrimesThread(counter, counter - 1 + numbersPerCore, i + 1);
             // Add to the counter the next start position.
-            counter += numbersPerCore + 1;
+            counter += numbersPerCore;
             // Start counting primes.
             threads[i].start();
         }
@@ -142,8 +147,14 @@ public final class SequentialPrimes {
             }
         }
 
+        // How long?
+        long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+        log.info("Found {} primes in {} ms", String.format("%,d", primes), String.format("%,d", millis));
+
         // Show the info.
         log.info("Total primes: {}", String.format("%,d", primes));
+
+        log.debug("Done.");
     }
 
 

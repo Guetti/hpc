@@ -65,9 +65,6 @@ public final class FindPrimesThread extends Thread{
      */
     @Override
     public void run(){
-        log.debug("Using Thread: {}", thread);
-        // Timer
-        long start = System.nanoTime();
         // Loop for check
         for (long k = from; k <= to; k++) {
             // Show some %
@@ -81,11 +78,7 @@ public final class FindPrimesThread extends Thread{
             }
         }
 
-        // How long?
-        long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
-        log.info("Thread {} Found {} primes in {} ms", thread, String.format("%,d", primes), String.format("%,d", millis));
 
-        log.debug("Done.");
     }
 
     /**
