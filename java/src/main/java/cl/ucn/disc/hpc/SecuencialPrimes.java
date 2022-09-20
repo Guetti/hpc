@@ -82,7 +82,7 @@ public final class SecuencialPrimes {
      *
      * @param args to use.
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         log.debug("Starting Main ..");
 
@@ -138,7 +138,6 @@ public final class SecuencialPrimes {
 
                 // Add the amount of primes that the core found.
                 primes += threads[i].getPrimes();
-                log.info("", threads[i].getPrimes());
             }
             catch (InterruptedException e){
                 e.printStackTrace();
