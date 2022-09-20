@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
-import static cl.ucn.disc.hpc.SecuencialPrimes.isPrime;
+import static cl.ucn.disc.hpc.SequentialPrimes.isPrime;
 
 /**
  * The thread to use to find primes.
@@ -61,7 +61,7 @@ public final class FindPrimesThread extends Thread{
     }
 
     /**
-     * Override the run method of Thread class to start finding primes..
+     * Override the run method of Thread class to start finding primes.
      */
     @Override
     public void run(){

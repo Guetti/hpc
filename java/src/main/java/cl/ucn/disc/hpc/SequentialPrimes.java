@@ -25,8 +25,6 @@ package cl.ucn.disc.hpc;
 import lombok.extern.slf4j.Slf4j;
 import oshi.SystemInfo;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * The Parallel Primes to show the speedup.
  *
@@ -34,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  * @version 0.0.1
  */
 @Slf4j
-public final class SecuencialPrimes {
+public final class SequentialPrimes {
 
     /**
      * Function to test primality.
