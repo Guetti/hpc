@@ -96,7 +96,7 @@ public final class SecuencialPrimes {
 
         // Configuration
         final long from = 1;
-        final long to = 1000 * 500 * 500; // ~ 25 mins.
+        final long to = 1000 * 500 * 500; // ~ 29 seconds.
 
         final long numbersPerCore = to / logicalCores;
 
