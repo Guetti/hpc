@@ -72,7 +72,7 @@ public final class FindPrimesThread extends Thread{
         for (long k = from; k <= to; k++) {
             // Show some %
             if (k % 1000000 == 0) {
-                log.debug("{}% -> {}", String.format("%.1f", 100 * (double) k / to), String.format("%,d", k));
+                log.debug("Thread {} {}% -> {}", thread, String.format("%.1f", 100 * (double) k / to), String.format("%,d", k));
             }
 
             // Count if prime
