@@ -150,9 +150,7 @@ public final class SequentialPrimes {
         // How long?
         long millis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
         log.info("Found {} primes in {} ms", String.format("%,d", primes), String.format("%,d", millis));
-
-        // Show the info.
-        log.info("Total primes: {}", String.format("%,d", primes));
+        
 
         log.debug("Done.");
     }
