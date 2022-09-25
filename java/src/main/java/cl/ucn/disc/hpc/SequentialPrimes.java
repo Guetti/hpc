@@ -96,7 +96,7 @@ public final class SequentialPrimes {
 
         // Configuration
         final long from = 1;
-        final long to = 1000 * 500 * 500; // ~ 29 seconds.
+        final long to = 1000 * 1000 * 500; // ~ 75 seconds, 500.000.000.
 
         final long numbersPerCore = to / logicalCores;
 
@@ -153,6 +153,4 @@ public final class SequentialPrimes {
         log.info("Found {} primes in {} ms", String.format("%,d", primes), String.format("%,d", millis));
         log.debug("Done.");
     }
-
-
 }
