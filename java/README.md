@@ -18,6 +18,7 @@ Time to process 500.000.000 numbers with:
 - 11 threads: ~ 76.726 ms ~ 1.27 minutes
 - 12 threads: ~ 75.229 ms ~ 1.25 minutes
 
+<img src="resources/Cores%20vs%20T.png" alt="cores vs t">
 
 ## IntelliJ IDEA recommended plugins
 
