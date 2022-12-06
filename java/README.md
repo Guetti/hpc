@@ -5,18 +5,20 @@ This is HPC (Java) training material for the [Departamento de Ingeniería de Sis
 ## Data
 
 Time to process 500.000.000 numbers with:
-- 1 thread: ~ 389.750 ms ~ 6.49 minutes
-- 2 threads: ~ 251.042 ms ~ 4.18 minutes
-- 3 threads: ~ 179.961 ms ~ 2.99 minutes
-- 4 threads: ~ 142.696 ms ~ 2.37 minutes
-- 5 threads: ~ 120.762 ms ~ 2.01 minutes
-- 6 threads: ~ 104.978 ms ~ 1.74 minutes
-- 7 threads: ~ 96.045 ms ~ 1.60 minutes
-- 8 threads: ~ 87.941 ms ~ 1.46 minutes
-- 9 threads: ~ 83.500 ms ~ 1.39 minutes
-- 10 threads: ~ 80.307 ms ~ 1.33 minutes
-- 11 threads: ~ 76.726 ms ~ 1.27 minutes
-- 12 threads: ~ 75.229 ms ~ 1.25 minutes
+|Threads|Time|Speedup Factor|The parallel efficiency|
+|---|----|---|---|
+|1|389.750 ms|-|-|
+|2|251.042 ms|1,55|1,29|
+|3|179.961 ms|2,16|1,38|
+|4|142.696 ms|2,73|1,47|
+|5|120.762 ms|3,23|1,55|
+|6|104.978 ms|3,71|1,62|
+|7|96.045 ms|4,06|1,72|
+|8|87.941 ms|4,43|1,80|
+|9|83.500 ms|4,67|1,92|
+|10|80.307 ms|4,85|2,06|
+|11|76.726 ms|5,08|2,17|
+|12|75.229 ms|5,18|2,31|
 
 <img src="resources/Cores%20vs%20T.png" alt="cores vs t">
 
