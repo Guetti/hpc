@@ -20,7 +20,7 @@ Time to process 500.000.000 numbers with:
 |11|76.726 ms|5,08|2,17|
 |12|75.229 ms|5,18|2,31|
 
-<img src="resources/Cores%20vs%20T.png" alt="cores vs t">
+<img src="resources/speedup%20and%20parallel%20efficiency.png" alt="Chart">
 
 ## IntelliJ IDEA recommended plugins
 
